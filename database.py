@@ -1,5 +1,8 @@
 from contextlib import contextmanager
 
+# --- Reset Database ---
+DROP_TABLE_COMPANIES = "DROP TABLE IF EXISTS companies;"
+DROP_TABLE_BARS = "DROP TABLE IF EXISTS bars;"
 
 # --- Create Tables ---
 CREATE_COMPANIES = """
@@ -37,7 +40,14 @@ def create_tables(connection):
         cursor.execute(CREATE_BARS)
 
 
+def drop_tables(connection):
+    with get_cursor(connection) as cursor:
+        cursor.execute(DROP_TABLE_COMPANIES)
+        cursor.execute(DROP_TABLE_BARS)
+
+
 if __name__ == '__main__':
     from connection_pool import get_connection
     with get_connection() as connection:
-        create_tables(connection)
+        # create_tables(connection)
+        drop_tables(connection)
