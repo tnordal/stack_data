@@ -21,3 +21,13 @@ class Bar:
         self.adj_close = adj_close
         self.volume = volume
 
+
+class Bars:
+    def __init__(self, bar) -> None:
+        self.bar = bar
+
+    def save(self) -> None:
+        pass
+
+    def add(self):
+        pass
