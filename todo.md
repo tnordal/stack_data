@@ -37,6 +37,7 @@ Bulk insert filtered bars
 ### User inputs
 * Commandline menu
     - [ ] Make menu
+    - [x] Update one ticker
     - [ ] Make function for update bars
     - [ ] Filter witch tickers to update
     - [ ] Make function for insert a new companies file
