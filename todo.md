@@ -38,8 +38,8 @@ Bulk insert filtered bars
 * Commandline menu
     - [ ] Make menu
     - [x] Update one ticker
-    - [ ] Make function for update bars
-    - [ ] Filter witch tickers to update
+    - [x] Make function for update bars
+    - [x] Filter witch tickers to update
     - [ ] Make function for insert a new companies file
     - [ ] Add a single companie manuel
 * Web menu
