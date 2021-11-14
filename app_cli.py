@@ -38,15 +38,19 @@ def update_companies_promt():
     col_ticker = input('Enter column name for the ticker:')
     col_name = input('Enter column name for the companie name:')
     col_sector = input('Enter column name for the sector:')
-    print(f"update_companies({csv_file}, {col_ticker}, {col_name}, {col_sector})")
+    print(
+        f"update_companies({csv_file}, {col_ticker}, {col_name}, {col_sector})"
+    )
 
 
 def add_companie_promt():
     print('Add companie')
-    ticker = input('Enter ticker:_')
+    ticker = input('Enter ticker:').upper()
     companie = input('Enter Companie name:')
+    exchange = input('Enter Exchange name:')
     sector = input('Enter a Sector:')
     print(f"Add {companie} in sector {sector} with {ticker} as ticker")
+    add_companie(ticker, companie, exchange, sector)
 
 # --- Menu Functions ---
 
@@ -68,6 +72,25 @@ def update_bars(exchange, period, max_tickers):
     for ticker in tickers:
         # bulk insert for each ticker
         update_ticker(ticker[0], period)
+
+
+def update_companies():
+    pass
+
+
+def add_companie(ticker, name, exchange, sector):
+    with get_connection() as connection:
+        new_ticker = database.add_companie(
+            connection=connection,
+            ticker=ticker,
+            name=name,
+            exchange=exchange,
+            sector=sector
+        )
+    if new_ticker:
+        print(f"Ticker {new_ticker} added")
+    else:
+        print(f"Ticker {ticker} already exists in DB!")
 
 
 def bulk_insert(df, table):

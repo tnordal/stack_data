@@ -1,7 +1,4 @@
-# import os
 from io import StringIO
-# import pandas as pd
-
 from contextlib import contextmanager
 from psycopg2.errorcodes import UNIQUE_VIOLATION
 from psycopg2 import errors
@@ -50,6 +47,13 @@ SELECT_COMPANIES_WHERE_EXCHANGE = """
     LIMIT %s;
 """
 
+INSERT_COMPANIE_RETURN_TICKER = """
+    INSERT INTO companies
+    (ticker, name, exchange, sector)
+    VALUES (%s, %s, %s, %s)
+    RETURNING ticker;
+"""
+
 
 @contextmanager
 def get_cursor(connection):
@@ -86,6 +90,19 @@ def get_tickers(connection, exchange, limit):
     with get_cursor(connection) as cursor:
         cursor.execute(SELECT_COMPANIES_WHERE_EXCHANGE, (exchange, limit))
         return cursor.fetchall()
+
+
+def add_companie(connection, ticker, name, exchange, sector):
+    with get_cursor(connection) as cursor:
+        try:
+            cursor.execute(
+                INSERT_COMPANIE_RETURN_TICKER,
+                (ticker, name, exchange, sector)
+            )
+        except errors.lookup(UNIQUE_VIOLATION):
+            return None
+
+        return cursor.fetchone()[0]
 
 
 def bulk_insert_bars(connection, df, table: str):
