@@ -30,11 +30,12 @@ def download_history(ticker, period='1y'):
     df.reset_index(inplace=True)
     df = rename_columns(df)
     df['date'] = pd.to_datetime(df['date']).apply(lambda x: x.date())
-    df['ticker'] = ticker
+    df['ticker'] = ticker.upper()
     return df
 
 
 def filter_data_by_ts(df, ticker):
+    ticker = ticker.upper()
     with get_connection() as connection:
         last_ts = database.get_last_ts(connection, ticker)
         first_ts = database.get_first_ts(connection, ticker)
