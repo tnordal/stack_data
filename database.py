@@ -44,6 +44,12 @@ SELECT_FIRST_TICKER = """
     WHERE ticker = %s;
 """
 
+SELECT_COMPANIES_WHERE_EXCHANGE = """
+    SELECT ticker FROM companies
+    WHERE exchange = %s
+    LIMIT %s;
+"""
+
 
 @contextmanager
 def get_cursor(connection):
@@ -74,6 +80,12 @@ def get_first_ts(connection, ticker):
     with get_cursor(connection) as cursor:
         cursor.execute(SELECT_FIRST_TICKER, (ticker,))
         return cursor.fetchone()[0]
+
+
+def get_tickers(connection, exchange, limit):
+    with get_cursor(connection) as cursor:
+        cursor.execute(SELECT_COMPANIES_WHERE_EXCHANGE, (exchange, limit))
+        return cursor.fetchall()
 
 
 def bulk_insert_bars(connection, df, table: str):

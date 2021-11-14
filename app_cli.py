@@ -19,7 +19,10 @@ Enter your choise:"""
 def update_bars_promt():
     exchange = input('Enter Exchange (Oslo, Sp500, Stockholm):')
     period = input('Enter period (1y, 2y...):')
-    print(f"Update {exchange} for period of {period}")
+    max_tickers = input('Enter max tickers to update:')
+
+    max_tickers = 999 if max_tickers == '' else int(max_tickers)
+    update_bars(exchange, period, max_tickers)
 
 
 def update_ticker_prompt():
@@ -39,6 +42,18 @@ def update_ticker(ticker, period):
     df = download.download_history(ticker, period)
     df = download.filter_data_by_ts(df, ticker)
     bulk_insert(df, 'bars')
+
+
+def update_bars(exchange, period, max_tickers):
+    print(f"Update {exchange} for period of {period}")
+    # Get list of tickers
+    with get_connection() as connection:
+        tickers = database.get_tickers(connection, exchange, max_tickers)
+
+    # loop ticker list
+    for ticker in tickers:
+        # bulk insert for each ticker
+        update_ticker(ticker[0], period)
 
 
 def bulk_insert(df, table):
