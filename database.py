@@ -23,15 +23,24 @@ CREATE_BARS = """
     CREATE TABLE IF NOT EXISTS bars (
         id SERIAL PRIMARY KEY,
         ticker TEXT,
-        ts REAL,
+        date DATE,
         open NUMERIC,
         high NUMERIC,
         low NUMERIC,
         close NUMERIC,
         adj_close NUMERIC,
         volume BIGINT,
-        UNIQUE (ticker, ts)
+        UNIQUE (ticker, date)
     );
+"""
+
+SELECT_LAST_TICKER = """
+    SELECT MAX(date) AS last_row FROM bars
+    WHERE ticker = %s;
+"""
+SELECT_FIRST_TICKER = """
+    SELECT MIN(date) AS last_row FROM bars
+    WHERE ticker = %s;
 """
 
 
@@ -54,6 +63,18 @@ def drop_tables(connection):
         cursor.execute(DROP_TABLE_BARS)
 
 
+def get_last_ts(connection, ticker):
+    with get_cursor(connection) as cursor:
+        cursor.execute(SELECT_LAST_TICKER, (ticker,))
+        return cursor.fetchone()[0]
+
+
+def get_first_ts(connection, ticker):
+    with get_cursor(connection) as cursor:
+        cursor.execute(SELECT_FIRST_TICKER, (ticker,))
+        return cursor.fetchone()[0]
+
+
 def bulk_insert_bars(connection, df):
     # Initialize a string buffer
     sio = StringIO()
@@ -73,5 +94,6 @@ def bulk_insert_bars(connection, df):
 if __name__ == '__main__':
     from connection_pool import get_connection
     with get_connection() as connection:
+        drop_tables(connection)
         create_tables(connection)
-        # drop_tables(connection)
+        # get_last_ts(connection, 'NHY.OL')
