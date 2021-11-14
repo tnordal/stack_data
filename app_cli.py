@@ -8,7 +8,8 @@ MAIN_MENU_PROMPT = """
 
 1) Update price data (bars)
 2) Update single ticker price data
-3) Menu 3
+3) Update Companies from csv file
+4) Add a Companie
 q) Exit Main Menu
 
 Enter your choise:"""
@@ -31,8 +32,21 @@ def update_ticker_prompt():
     update_ticker(ticker=ticker, period=period)
 
 
-def menu_3():
-    print('Menu 3')
+def update_companies_promt():
+    print('Update companies from csv')
+    csv_file = input('Enter name csv-file:')
+    col_ticker = input('Enter column name for the ticker:')
+    col_name = input('Enter column name for the companie name:')
+    col_sector = input('Enter column name for the sector:')
+    print(f"update_companies({csv_file}, {col_ticker}, {col_name}, {col_sector})")
+
+
+def add_companie_promt():
+    print('Add companie')
+    ticker = input('Enter ticker:_')
+    companie = input('Enter Companie name:')
+    sector = input('Enter a Sector:')
+    print(f"Add {companie} in sector {sector} with {ticker} as ticker")
 
 # --- Menu Functions ---
 
@@ -71,7 +85,8 @@ def bulk_insert(df, table):
 MAIN_MENU_OPTIONS = {
     '1': update_bars_promt,
     '2': update_ticker_prompt,
-    '3': menu_3
+    '3': update_companies_promt,
+    '4': add_companie_promt
 }
 
 
