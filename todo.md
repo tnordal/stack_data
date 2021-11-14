@@ -29,3 +29,16 @@ Bulk insert filtered bars
 * Download ticker
     - [x] Download one ticker
     - [x] Add ticker bars to DB
+* Add companies to db
+    - [x] Prepare csv files
+    - [x] Bulk insert to db
+    - [ ] Add a single companie
+
+### User inputs
+* Commandline menu
+    - [ ] Make menu
+    - [ ] Make function for update bars
+    - [ ] Filter witch tickers to update
+    - [ ] Make function for insert a new companies file
+    - [ ] Add a single companie manuel
+* Web menu
