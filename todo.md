@@ -11,6 +11,8 @@ One for storing data from the stock exchange.
 
 ### Download
 Downloading from Yahoo.
+Filter bars by first and last date from bars table
+Bulk insert filtered bars
 
 ## TODO
 ### Database
@@ -18,9 +20,12 @@ Downloading from Yahoo.
     - [ ] Company class
     - [ ] Bar class
 * Make database module
-    - [ ] Sql to make company table
-    - [ ] Sql to make bar table
+    - [x] Sql to make company table
+    - [x] Sql to make bar table
     - [ ] Sql for company class
     - [ ] Sql for bar class
 
 ### Download
+* Download ticker
+    - [x] Download one ticker
+    - [x] Add ticker bars to DB
