@@ -1,11 +1,13 @@
 import yfinance as yf
+import pandas as pd
+
 import database
 from connection_pool import get_connection
 
 
 def rename_columns(df):
     new_columns = {
-        'Date': 'ts',
+        'Date': 'date',
         'Open': 'open',
         'High': 'high',
         'Low': 'low',
@@ -17,7 +19,7 @@ def rename_columns(df):
     return df
 
 
-def download_history(ticker, period='5y'):
+def download_history(ticker, period='1y'):
     df = yf.download(
         ticker.strip(),
         period=period,
@@ -27,12 +29,27 @@ def download_history(ticker, period='5y'):
     )
     df.reset_index(inplace=True)
     df = rename_columns(df)
-    df['ts'] = df['ts'].values.tolist()
+    df['date'] = pd.to_datetime(df['date']).apply(lambda x: x.date())
     df['ticker'] = ticker
     return df
 
 
+def filter_data_by_ts(df):
+    with get_connection() as connection:
+        last_ts = database.get_last_ts(connection, 'NHY.OL')
+        first_ts = database.get_first_ts(connection, 'NHY.OL')
+    if last_ts is None:
+        return df
+    mask = (df['date'] > last_ts) | (df['date'] < first_ts)
+    return df[mask]
+
+
 if __name__ == '__main__':
     df = download_history('NHY.OL')
-    with get_connection() as connection:
-        database.bulk_insert_bars(connection, df)
+    df = filter_data_by_ts(df)
+    if len(df) > 0:
+        with get_connection() as connection:
+            database.bulk_insert_bars(connection, df)
+        print(f"Inserted {len(df)} rows!")
+    else:
+        print('Nothing to insert!')
