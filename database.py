@@ -14,9 +14,10 @@ DROP_TABLE_BARS = "DROP TABLE IF EXISTS bars;"
 # --- Create Tables ---
 CREATE_COMPANIES = """
     CREATE TABLE IF NOT EXISTS companies (
-        id SERIAL PRIMARY KEY,
+        ticker TEXT PRIMARY KEY,
         name TEXT,
-        ticker TEXT
+        exchange TEXT,
+        sector TEXT
     );
 """
 CREATE_BARS = """
@@ -75,7 +76,7 @@ def get_first_ts(connection, ticker):
         return cursor.fetchone()[0]
 
 
-def bulk_insert_bars(connection, df):
+def bulk_insert_bars(connection, df, table: str):
     # Initialize a string buffer
     sio = StringIO()
     # Write the Pandas DataFrame as a csv to the buffer
@@ -85,10 +86,11 @@ def bulk_insert_bars(connection, df):
 
     with get_cursor(connection) as cursor:
         try:
-            cursor.copy_from(sio, 'bars', columns=df.columns, sep=',')
+            cursor.copy_from(sio, table, columns=df.columns, sep=',')
             connection.commit()
+            return True
         except errors.lookup(UNIQUE_VIOLATION):
-            print('Error: Rows already exists!')
+            return 'Error: Rows already exists!'
 
 
 if __name__ == '__main__':
