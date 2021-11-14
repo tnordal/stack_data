@@ -1,0 +1,387 @@
+S.No.,Company Name,Ticker,Sector
+1,A3 Allmänna IT- och Telekom.,ATRE.ST,Telecommunications
+2,AAK,AAK.ST,Consumer Goods
+3,ABB Ltd,ABB.ST,Industrials
+4,AcadeMedia,ACAD.ST,Consumer Services
+5,Actic Group,ATIC.ST,Consumer Services
+6,Active Biotech,ACTI.ST,Health Care
+7,Adapteo,ADAPT.ST,Financials
+8,AddLife B,ALIF-B.ST,Health Care
+9,Addnode Group B,ANOD-B.ST,Technology
+10,Addtech B,ADDT-B.ST,Industrials
+11,ÅF Pöyry B,AF-B.ST,Industrials
+12,Africa Oil,AOI.ST,Oil & Gas
+13,Agromino,AGRO.ST,Consumer Goods
+14,Ahlstrom-Munksjö Oyj,AM1S.ST,Basic Materials
+15,Alfa Laval,ALFA.ST,Industrials
+16,Alimak Group,ALIG.ST,Industrials
+17,Alligator Bioscience,ATORX.ST,Health Care
+18,Ambea,AMBEA.ST,Health Care
+19,Anoto Group,ANOT.ST,Technology
+20,AQ Group,AQ.ST,Industrials
+21,Arctic Paper,ARP.ST,Basic Materials
+22,Arion Banki SDB,ARION-SDB.ST,Financials
+23,Arise,ARISE.ST,Utilities
+24,Arjo B,ARJO-B.ST,Health Care
+25,Ascelia Pharma,ACE.ST,Health Care
+26,ASSA ABLOY B,ASSA-B.ST,Industrials
+27,AstraZeneca,AZN.ST,Health Care
+28,Atlas Copco A,ATCO-A.ST,Industrials
+29,Atlas Copco B,ATCO-B.ST,Industrials
+30,Atrium Ljungberg B,ATRLJ-B.ST,Financials
+31,Attendo,ATT.ST,Health Care
+32,Autoliv SDB,ALIV-SDB.ST,Consumer Goods
+33,Avanza Bank Holding,AZA.ST,Financials
+34,Axfood,AXFO.ST,Consumer Services
+35,B3 Consulting Group,B3.ST,Technology
+36,Bactiguard Holding B,BACTI-B.ST,Health Care
+37,Balco Group,BALCO.ST,Industrials
+38,BE Group,BEGR.ST,Basic Materials
+39,Beijer Alma B,BEIA-B.ST,Industrials
+40,Beijer Electronics Group,BELE.ST,Industrials
+41,Beijer Ref B,BEIJ-B.ST,Industrials
+42,Bergman & Beving B,BERG-B.ST,Industrials
+43,Bergs Timber B,BRG-B.ST,Basic Materials
+44,Besqab,BESQ.ST,Financials
+45,Betsson B,BETS-B.ST,Consumer Services
+46,Better Collective,BETCO.ST,Consumer Services
+47,Bilia A,BILI-A.ST,Consumer Services
+48,BillerudKorsnäs,BILL.ST,Basic Materials
+49,BioArctic B,BIOA-B.ST,Health Care
+50,BioGaia B,BIOG-B.ST,Health Care
+51,BioInvent International,BINV.ST,Health Care
+52,Biotage,BIOT.ST,Health Care
+53,Björn Borg,BORG.ST,Consumer Goods
+54,Boliden,BOL.ST,Basic Materials
+55,Bonava A,BONAV-A.ST,Financials
+56,Bonava B,BONAV-B.ST,Financials
+57,BONESUPPORT HOLDING,BONEX.ST,Health Care
+58,Bong,BONG.ST,Industrials
+59,Boozt,BOOZT.ST,Consumer Services
+60,Boule Diagnostics,BOUL.ST,Health Care
+61,Bravida Holding,BRAV.ST,Industrials
+62,Brinova Fastigheter B,BRIN-B.ST,Financials
+63,BTS Group B,BTS-B.ST,Industrials
+64,Bufab,BUFAB.ST,Industrials
+65,Bulten,BULTEN.ST,Consumer Goods
+66,Bure Equity,BURE.ST,Financials
+67,Bygghemma Group First,BHG.ST,Consumer Services
+68,Byggmax Group,BMAX.ST,Consumer Services
+69,Calliditas Therapeutics,CALTX.ST,Health Care
+70,Camurus,CAMX.ST,Health Care
+71,Cantargia,CANTA.ST,Health Care
+72,Castellum,CAST.ST,Financials
+73,Catella A,CAT-A.ST,Financials
+74,Catella B,CAT-B.ST,Financials
+75,Catena,CATE.ST,Financials
+76,Catena Media,CTM.ST,Consumer Services
+77,Cavotec,CCC.ST,Industrials
+78,CellaVision,CEVI.ST,Health Care
+79,Christian Berner Tech Trade B,CBTT-B.ST,Industrials
+80,Clas Ohlson B,CLAS-B.ST,Consumer Services
+81,Cloetta B,CLA-B.ST,Consumer Goods
+82,Collector,COLL.ST,Financials
+83,Concentric,COIC.ST,Industrials
+84,Concordia Maritime B,CCOR-B.ST,Industrials
+85,Consilium B,CONS-B.ST,Industrials
+86,Coor Service Management Hold.,COOR.ST,Industrials
+87,Corem Property Group A,CORE-A.ST,Financials
+88,Corem Property Group B,CORE-B.ST,Financials
+89,Corem Property Group Pref,CORE-PREF.ST,Financials
+90,C-RAD B,CRAD-B.ST,Health Care
+91,Creades A,CRED-A.ST,Financials
+92,CTT Systems,CTT.ST,Industrials
+93,Dedicare B,DEDI.ST,Health Care
+94,Diös Fastigheter,DIOS.ST,Financials
+95,Dometic Group,DOM.ST,Consumer Goods
+96,DORO,DORO.ST,Technology
+97,Duni,DUNI.ST,Consumer Goods
+98,Duroc B,DURC-B.ST,Industrials
+99,Dustin Group,DUST.ST,Consumer Services
+100,Eastnine,EAST.ST,Financials
+101,Edgeware,EDGE.ST,Technology
+102,Elanders B,ELAN-B.ST,Industrials
+103,Electra Gruppen,ELEC.ST,Consumer Services
+104,Electrolux A,ELUX-A.ST,Consumer Goods
+105,Electrolux B,ELUX-B.ST,Consumer Goods
+106,Elekta B,EKTA-B.ST,Health Care
+107,Elos Medtech B,ELOS-B.ST,Health Care
+108,Eltel,ELTEL.ST,Industrials
+109,Empir Group B,EMPIR-B.ST,Technology
+110,Endomines,ENDO.ST,Basic Materials
+111,Enea,ENEA.ST,Technology
+112,Eniro,ENRO.ST,Consumer Services
+113,Eniro pref,ENRO-PREF.ST,Consumer Services
+114,EnQuest PLC,ENQ.ST,Oil & Gas
+115,Eolus Vind B,EOLU-B.ST,Oil & Gas
+116,Epiroc A,EPI-A.ST,Industrials
+117,Epiroc B,EPI-B.ST,Industrials
+118,Episurf B,EPIS-B.ST,Health Care
+119,EQT,EQT.ST,Financials
+120,Ericsson A,ERIC-A.ST,Technology
+121,Ericsson B,ERIC-B.ST,Technology
+122,Essity A,ESSITY-A.ST,Consumer Goods
+123,Essity B,ESSITY-B.ST,Consumer Goods
+124,Etrion,ETX.ST,Utilities
+125,Evolution Gaming Group,EVO.ST,Consumer Services
+126,eWork Group,EWRK.ST,Industrials
+127,Fabege,FABG.ST,Financials
+128,Fagerhult,FAG.ST,Industrials
+129,Fast. Balder B,BALD-B.ST,Financials
+130,Fastpartner A,FPAR-A.ST,Financials
+131,Fastpartner D,FPAR-D.ST,Financials
+132,Fastpartner Pref,FPAR-PREF.ST,Financials
+133,Feelgood Svenska,FEEL.ST,Health Care
+134,Fenix Outdoor International B,FOI-B.ST,Consumer Goods
+135,Ferronordic,FNM.ST,Industrials
+136,Fingerprint Cards B,FING-B.ST,Industrials
+137,FM Mattsson Mora Group B,FMM-B.ST,Industrials
+138,FormPipe Software,FPIP.ST,Technology
+139,G5 Entertainment,G5EN.ST,Technology
+140,Gaming Innovation Group,GIGSEK.ST,Consumer Services
+141,Garo,GARO.ST,Industrials
+142,Getinge B,GETI-B.ST,Health Care
+143,GHP Specialty Care,GHP.ST,Health Care
+144,Gränges,GRNG.ST,Consumer Goods
+145,Green Landscaping Group,GREEN.ST,Industrials
+146,Gunnebo,GUNN.ST,Industrials
+147,Haldex,HLDX.ST,Consumer Goods
+148,Handicare Group,HANDI.ST,Health Care
+149,Hansa Biopharma,HNSA.ST,Health Care
+150,Hanza Holding,HANZA.ST,Industrials
+151,Havsfrun Investment B,HAV-B.ST,Financials
+152,HEBA B,HEBA-B.ST,Financials
+153,Hembla B,HEM-B.ST,Financials
+154,Hemfosa Fastigheter,HEMF.ST,Financials
+155,Hemfosa Fastigheter Pref,HEMF-PREF.ST,Financials
+156,Hennes & Mauritz B,HM-B.ST,Consumer Services
+157,Hexagon B,HEXA-B.ST,Technology
+158,Hexatronic Group,HTRO.ST,Technology
+159,HEXPOL B,HPOL-B.ST,Basic Materials
+160,HiQ International,HIQ.ST,Technology
+161,HMS Networks,HMS.ST,Technology
+162,Hoist Finance,HOFI.ST,Financials
+163,Holmen A,HOLM-A.ST,Basic Materials
+164,Holmen B,HOLM-B.ST,Basic Materials
+165,Hufvudstaden A,HUFV-A.ST,Financials
+166,Hufvudstaden C,HUFV-C.ST,Financials
+167,Humana,HUM.ST,Health Care
+168,Husqvarna A,HUSQ-A.ST,Consumer Goods
+169,Husqvarna B,HUSQ-B.ST,Consumer Goods
+170,I.A.R Systems Group,IAR-B.ST,Technology
+171,ICA Gruppen,ICA.ST,Consumer Services
+172,ICTA,ICTA.ST,Industrials
+173,Image Systems,IS.ST,Industrials
+174,Immunicum,IMMU.ST,Health Care
+175,Immunovia,IMMNOV.ST,Health Care
+176,Industrivärden A,INDU-A.ST,Financials
+177,Industrivärden C,INDU-C.ST,Financials
+178,Indutrade,INDT.ST,Industrials
+179,Infant Bacterial TherapeuticsB,IBT-B.ST,Health Care
+180,Instalco,INSTAL.ST,Industrials
+181,International Petroleum Corp.,IPCO.ST,Oil & Gas
+182,Internationella Engelska Skola,ENG.ST,Consumer Services
+183,Intrum,INTRUM.ST,Financials
+184,Investor A,INVE-A.ST,Financials
+185,Investor B,INVE-B.ST,Financials
+186,Invisio Communications,IVSO.ST,Technology
+187,Inwido,INWI.ST,Industrials
+188,ITAB Shop Concept B,ITAB-B.ST,Industrials
+189,JM,JM.ST,Financials
+190,John Mattson Fastighetsföret.,JOMA.ST,Financials
+191,Josemaria Resources,JOSE.ST,Basic Materials
+192,K2A Knaust & Andersson B,K2A-B.ST,Financials
+193,K2A Knaust & Andersson Pref,K2A-PREF.ST,Financials
+194,KABE Group B,KABE-B.ST,Consumer Goods
+195,Karnov Group,KAR.ST,Consumer Services
+196,Karo Pharma,KARO.ST,Health Care
+197,Karolinska Development B,KDEV.ST,Health Care
+198,K-Fast Holding B,KFAST-B.ST,Financials
+199,Kindred Group,KIND-SDB.ST,Consumer Services
+200,Kinnevik A,KINV-A.ST,Financials
+201,Kinnevik B,KINV-B.ST,Financials
+202,Klövern A,KLOV-A.ST,Financials
+203,Klövern B,KLOV-B.ST,Financials
+204,Klövern pref,KLOV-PREF.ST,Financials
+205,Knowit,KNOW.ST,Technology
+206,Kungsleden,KLED.ST,Financials
+207,Lagercrantz Group B,LAGR-B.ST,Industrials
+208,Lammhults Design Group B,LAMM-B.ST,Consumer Goods
+209,Latour B,LATO-B.ST,Financials
+210,LeoVegas,LEO.ST,Consumer Services
+211,Lifco B,LIFCO-B.ST,Industrials
+212,Lime Technologies,LIME.ST,Technology
+213,Lindab International,LIAB.ST,Industrials
+214,Loomis B,LOOM-B.ST,Industrials
+215,Lucara Diamond Corp,LUC.ST,Basic Materials
+216,Lundbergföretagen B,LUND-B.ST,Financials
+217,Lundin Gold,LUG.ST,Basic Materials
+218,Lundin Mining Corporation,LUMI.ST,Basic Materials
+219,Lundin Petroleum,LUPE.ST,Oil & Gas
+220,Magnolia Bostad,MAG.ST,Financials
+221,Malmbergs Elektriska B,MEAB-B.ST,Industrials
+222,MedCap,MCAP.ST,Health Care
+223,Medicover B,MCOV-B.ST,Health Care
+224,Medivir B,MVIR-B.ST,Health Care
+225,Mekonomen,MEKO.ST,Consumer Goods
+226,Micro Systemation B,MSAB-B.ST,Technology
+227,Midsona A,MSON-A.ST,Consumer Goods
+228,Midsona B,MSON-B.ST,Consumer Goods
+229,Midway A,MIDW-A.ST,Financials
+230,Midway B,MIDW-B.ST,Financials
+231,Millicom Int. Cellular SDB,TIGO-SDB.ST,Telecommunications
+232,Mips,MIPS.ST,Consumer Goods
+233,Moberg Pharma,MOB.ST,Health Care
+234,Modern Times Group A,MTG-A.ST,Consumer Services
+235,Modern Times Group B,MTG-B.ST,Consumer Services
+236,Moment Group,MOMENT.ST,Consumer Services
+237,Momentum Group B,MMGR-B.ST,Industrials
+238,MQ Holding,MQ.ST,Consumer Services
+239,MultiQ International,MULQ.ST,Technology
+240,Munters Group,MTRS.ST,Industrials
+241,Mycronic,MYCR.ST,Industrials
+242,NAXS,NAXS.ST,Financials
+243,NCAB Group,NCAB.ST,Technology
+244,NCC A,NCC-A.ST,Industrials
+245,NCC B,NCC-B.ST,Industrials
+246,Nederman Holding,NMAN.ST,Industrials
+247,Net Insight B,NETI-B.ST,Technology
+248,NetEnt B,NET-B.ST,Consumer Services
+249,NeuroVive Pharmaceutical,NVP.ST,Health Care
+250,New Wave B,NEWA-B.ST,Consumer Goods
+251,NGS Group,NGS.ST,Financials
+252,NIBE Industrier B,NIBE-B.ST,Industrials
+253,Nilörngruppen B,NIL-B.ST,Consumer Goods
+254,Nobia,NOBI.ST,Consumer Goods
+255,Nobina,NOBINA.ST,Industrials
+256,Nolato B,NOLA-B.ST,Industrials
+257,Nordea Bank Abp,NDA-SE.ST,Financials
+258,Nordic Entertainment Group A,NENT-A.ST,Consumer Services
+259,Nordic Entertainment Group B,NENT-B.ST,Consumer Services
+260,Nordic Waterproofing Holding,NWG.ST,Industrials
+261,NOTE,NOTE.ST,Industrials
+262,NOVOTEK B,NTEK-B.ST,Technology
+263,NP3 Fastigheter,NP3.ST,Financials
+264,NP3 Fastigheter Pref,NP3-PREF.ST,Financials
+265,Nyfosa,NYF.ST,Financials
+266,Oasmia Pharmaceutical,OASM.ST,Health Care
+267,Odd Molly International,ODD.ST,Consumer Goods
+268,OEM International B,OEM-B.ST,Industrials
+269,Oncopeptides,ONCO.ST,Health Care
+270,Opus Group,OPUS.ST,Industrials
+271,Öresund,ORES.ST,Financials
+272,Orexo,ORX.ST,Health Care
+273,Ortivus A,ORTI-A.ST,Health Care
+274,Ortivus B,ORTI-B.ST,Health Care
+275,Oscar Properties Holding,OP.ST,Financials
+276,Oscar Properties Holding PREF,OP-PREF.ST,Financials
+277,Oscar Properties Holding PREFB,OP-PREFB.ST,Financials
+278,Pandox B,PNDX-B.ST,Financials
+279,Peab B,PEAB-B.ST,Industrials
+280,Platzer Fastigheter Holding B,PLAZ-B.ST,Financials
+281,PledPharma,PLED.ST,Health Care
+282,Poolia B,POOL-B.ST,Industrials
+283,Precise Biometrics,PREC.ST,Industrials
+284,Prevas B,PREV-B.ST,Technology
+285,Pricer B,PRIC-B.ST,Industrials
+286,Proact IT Group,PACT.ST,Technology
+287,Probi,PROB.ST,Health Care
+288,Profilgruppen B,PROF-B.ST,Basic Materials
+289,Projektengagemang Sweden B,PENG-B.ST,Industrials
+290,Q-Linea,QLINEA.ST,Health Care
+291,Qliro Group,QLRO.ST,Consumer Services
+292,Railcare Group,RAIL.ST,Industrials
+293,Ratos A,RATO-A.ST,Financials
+294,Ratos B,RATO-B.ST,Financials
+295,RaySearch Laboratories B,RAY-B.ST,Health Care
+296,Recipharm B,RECI-B.ST,Health Care
+297,Rejlers B,REJL-B.ST,Industrials
+298,Resurs Holding,RESURS.ST,Financials
+299,RNB RETAIL AND BRANDS,RNBS.ST,Consumer Services
+300,Rottneros,RROS.ST,Basic Materials
+301,SAAB B,SAAB-B.ST,Industrials
+302,Sagax A,SAGA-A.ST,Financials
+303,Sagax B,SAGA-B.ST,Financials
+304,Sagax D,SAGA-D.ST,Financials
+305,Sagax pref,SAGA-PREF.ST,Financials
+306,Samhällsbyggnadsbo. i Norden B,SBB-B.ST,Financials
+307,Samhällsbyggnadsbo. i Norden D,SBB-D.ST,Financials
+308,Sandvik,SAND.ST,Industrials
+309,Saniona,SANION.ST,Health Care
+310,SAS,SAS.ST,Consumer Services
+311,SCA A,SCA-A.ST,Basic Materials
+312,SCA B,SCA-B.ST,Basic Materials
+313,Scandi Standard,SCST.ST,Consumer Goods
+314,Scandic Hotels Group,SHOT.ST,Consumer Services
+315,SEB A,SEB-A.ST,Financials
+316,SEB C,SEB-C.ST,Financials
+317,SECTRA B,SECT-B.ST,Health Care
+318,Securitas B,SECU-B.ST,Industrials
+319,Semafo,SMF.ST,Basic Materials
+320,Semcon,SEMC.ST,Industrials
+321,Sensys Gatso Group,SENS.ST,Industrials
+322,Serneke Group B,SRNKE-B.ST,Industrials
+323,Sinch,SINCH.ST,Technology
+324,SinterCast,SINT.ST,Industrials
+325,Skanska B,SKA-B.ST,Industrials
+326,SKF A,SKF-A.ST,Industrials
+327,SKF B,SKF-B.ST,Industrials
+328,SkiStar B,SKIS-B.ST,Consumer Services
+329,Softronic B,SOF-B.ST,Technology
+330,Sportamore,SPOR.ST,Consumer Services
+331,SSAB A,SSAB-A.ST,Basic Materials
+332,SSAB B,SSAB-B.ST,Basic Materials
+333,SSM Holding,SSM.ST,Financials
+334,Starbreeze A,STAR-A.ST,Technology
+335,Starbreeze B,STAR-B.ST,Technology
+336,Stendörren Fastigheter B,STEF-B.ST,Financials
+337,Stockwik Förvaltning,STWK.ST,Technology
+338,Stora Enso A,STE-A.ST,Basic Materials
+339,Stora Enso R,STE-R.ST,Basic Materials
+340,Strax,STRAX.ST,Consumer Goods
+341,Studsvik,SVIK.ST,Industrials
+342,Sv. Handelsbanken A,SHB-A.ST,Financials
+343,Sv. Handelsbanken B,SHB-B.ST,Financials
+344,Svedbergs B,SVED-B.ST,Industrials
+345,Svolder A,SVOL-A.ST,Financials
+346,Svolder B,SVOL-B.ST,Financials
+347,SWECO A,SWEC-A.ST,Industrials
+348,SWECO B,SWEC-B.ST,Industrials
+349,Swedbank A,SWED-A.ST,Financials
+350,Swedish Match,SWMA.ST,Consumer Goods
+351,Swedish Orphan Biovitrum,SOBI.ST,Health Care
+352,Swedol B,SWOL-B.ST,Consumer Services
+353,Systemair,SYSR.ST,Industrials
+354,Tele2 A,TEL2-A.ST,Telecommunications
+355,Tele2 B,TEL2-B.ST,Telecommunications
+356,Telia Company,TELIA.ST,Telecommunications
+357,Tethys Oil,TETY.ST,Oil & Gas
+358,TF Bank,TFBANK.ST,Financials
+359,Thule Group,THULE.ST,Consumer Goods
+360,TietoEVRY Oyj,TIETOS.ST,Technology
+361,Tobii,TOBII.ST,Technology
+362,Traction B,TRAC-B.ST,Financials
+363,TradeDoubler,TRAD.ST,Consumer Services
+364,TRATON,8TRA.ST,Industrials
+365,Trelleborg B,TREL-B.ST,Industrials
+366,Trention,TRENT.ST,Consumer Goods
+367,Troax Group,TROAX.ST,Industrials
+368,VBG GROUP B,VBG-B.ST,Consumer Goods
+369,Venue Retail Group B,VRG-B.ST,Consumer Services
+370,Veoneer SDB,VNE-SDB.ST,Consumer Goods
+371,Vicore Pharma Holding,VICO.ST,Health Care
+372,Viking Supply Ships B,VSSAB-B.ST,Industrials
+373,Vitec Software Group B,VIT-B.ST,Technology
+374,Vitrolife,VITR.ST,Health Care
+375,Volati,VOLO.ST,Industrials
+376,Volati Pref,VOLO-PREF.ST,Industrials
+377,Volvo A,VOLV-A.ST,Industrials
+378,Volvo B,VOLV-B.ST,Industrials
+379,Vostok New Ventures,VNV-SDB.ST,Financials
+380,Wallenstam B,WALL-B.ST,Financials
+381,Wihlborgs Fastigheter,WIHL.ST,Financials
+382,Wise Group,WISE.ST,Industrials
+383,XANO Industri B,XANO-B.ST,Industrials
+384,Xbrane Biopharma,XBRANE.ST,Health Care
+385,Xvivo Perfusion,XVIVO.ST,Health Care
+386,ZetaDisplay,ZETA.ST,Technology
