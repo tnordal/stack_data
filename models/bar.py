@@ -2,7 +2,7 @@ class Bar:
     def __init__(
         self,
         ticker: str,
-        timestamp: int,
+        ts: int,
         open: float,
         high: float,
         low: float,
@@ -13,7 +13,7 @@ class Bar:
     ) -> None:
         self.id = _id
         self.ticker = ticker
-        self.date = timestamp
+        self.date = ts
         self.open = open
         self.high = high
         self.low = low
