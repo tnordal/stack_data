@@ -2,6 +2,8 @@ import download
 from connection_pool import get_connection
 import database
 
+import pandas as pd
+pd.options.mode.chained_assignment = None
 
 PATH_COMPANIES_FILES = 'data_files/companies/'
 
@@ -69,6 +71,9 @@ def update_ticker(ticker, period):
     print(f"Update {ticker} for period of {period}")
     df = download.download_history(ticker, period)
     df = download.filter_data_by_ts(df, ticker)
+    # TODO Force volume column to int
+    df.dropna(axis=0, inplace=True)
+    df = df.astype({'volume': 'int32'}, copy=True)
     bulk_insert(df, 'bars')
 
 
