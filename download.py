@@ -46,8 +46,10 @@ def filter_data_by_ts(df, ticker):
 
 
 def prepare_companies_file_for_db(
-    ticker_file, ticker_column='ticker',
-    name_column='Company', sector_column='sector',
+    ticker_file,
+    ticker_column='ticker',
+    name_column='Company',
+    sector_column='sector',
     exchange='Oslo'
 ):
     df_raw = pd.read_csv(ticker_file)

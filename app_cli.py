@@ -3,6 +3,8 @@ from connection_pool import get_connection
 import database
 
 
+PATH_COMPANIES_FILES = 'data_files/companies/'
+
 MAIN_MENU_PROMPT = """
 --- Main Menu ---
 
@@ -38,8 +40,16 @@ def update_companies_promt():
     col_ticker = input('Enter column name for the ticker:')
     col_name = input('Enter column name for the companie name:')
     col_sector = input('Enter column name for the sector:')
+    exchange = input('Enter exchange name:')
     print(
         f"update_companies({csv_file}, {col_ticker}, {col_name}, {col_sector})"
+    )
+    update_companies(
+        ticker_file=csv_file,
+        ticker_column=col_ticker,
+        name_column=col_name,
+        sector_column=col_sector,
+        exchange=exchange
     )
 
 
@@ -74,8 +84,31 @@ def update_bars(exchange, period, max_tickers):
         update_ticker(ticker[0], period)
 
 
-def update_companies():
-    pass
+def update_companies(
+    ticker_file,
+    ticker_column,
+    name_column,
+    sector_column,
+    exchange
+):
+    ticker_file = PATH_COMPANIES_FILES + ticker_file
+    df = download.prepare_companies_file_for_db(
+        ticker_file=ticker_file,
+        ticker_column=ticker_column,
+        name_column=name_column,
+        sector_column=sector_column,
+        exchange=exchange
+    )
+
+    if len(df) > 0:
+        with get_connection() as connection:
+            ret = database.bulk_insert_bars(connection, df, 'companies')
+            if ret is True:
+                print(f"Inserted {len(df)} rows!")
+            else:
+                print(ret)
+    else:
+        print('Nothing to insert!')
 
 
 def add_companie(ticker, name, exchange, sector):

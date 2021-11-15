@@ -37,7 +37,7 @@ SELECT_LAST_TICKER = """
     WHERE ticker = %s;
 """
 SELECT_FIRST_TICKER = """
-    SELECT MIN(date) AS last_row FROM bars
+    SELECT MIN(date) AS first_row FROM bars
     WHERE ticker = %s;
 """
 
