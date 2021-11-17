@@ -24,6 +24,10 @@ Bulk insert filtered bars
     - [x] Sql to make bar table
     - [ ] Sql for company class
     - [ ] Sql for bar class
+* Make a new companies table
+* Make a sector table
+* Make a industri table
+* Make a exchange table
 
 ### Download
 * Download ticker
