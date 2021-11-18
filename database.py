@@ -17,6 +17,35 @@ CREATE_COMPANIES = """
         sector TEXT
     );
 """
+CREATE_COMPANIES_ = """
+    CREATE TABLE IF NOT EXISTS companies (
+        ticker TEXT PRIMARY KEY,
+        name TEXT,
+        exchange TEXT,
+        sector TEXT
+    );
+"""
+CREATE_EXCHANGES = """
+    CREATE TABLE IF NOT EXISTS exchanges (
+        id SERIAL PRIMARY KEY,
+        name TEXT,
+        UNIQUE (name)
+    );
+"""
+CREATE_SECTORS = """
+    CREATE TABLE IF NOT EXISTS sectors (
+        id SERIAL PRIMARY KEY,
+        name TEXT,
+        UNIQUE (name)
+    );
+"""
+CREATE_INDUSTRIES = """
+    CREATE TABLE IF NOT EXISTS industries (
+        id SERIAL PRIMARY KEY,
+        name TEXT,
+        UNIQUE (name)
+    );
+"""
 CREATE_BARS = """
     CREATE TABLE IF NOT EXISTS bars (
         id SERIAL PRIMARY KEY,
@@ -32,6 +61,7 @@ CREATE_BARS = """
     );
 """
 
+# --- SELECT FROM DATABASE ---
 SELECT_LAST_TICKER = """
     SELECT MAX(date) AS last_row FROM bars
     WHERE ticker = %s;
@@ -47,12 +77,21 @@ SELECT_COMPANIES_WHERE_EXCHANGE = """
     LIMIT %s;
 """
 
+# --- INSERT INTO DATABASE ---
 INSERT_COMPANIE_RETURN_TICKER = """
     INSERT INTO companies
     (ticker, name, exchange, sector)
     VALUES (%s, %s, %s, %s)
     RETURNING ticker;
 """
+
+# SELECT b.*, c.exchange, c.sector
+# FROM bars b, companies c
+# WHERE c.exchange = 'Oslo'
+# AND c.sector LIKE 'Health Care%'
+# AND b.ticker = c.ticker
+# AND b.date >= '2021-11-01'
+# ORDER BY b.date DESC
 
 
 @contextmanager
