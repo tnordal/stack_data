@@ -24,10 +24,11 @@ Bulk insert filtered bars
     - [x] Sql to make bar table
     - [ ] Sql for company class
     - [ ] Sql for bar class
-* Make a new companies table
+- [x] Make a new companies table
 * Make a sector table
 * Make a industri table
 * Make a exchange table
+- [ ] Make a table for tickers not found
 
 ### Download
 * Download ticker
@@ -37,6 +38,7 @@ Bulk insert filtered bars
     - [x] Prepare csv files
     - [x] Bulk insert to db
     - [ ] Add a single companie
+    - [ ] Add not found tickers to DB
 
 ### User inputs
 * Commandline menu
