@@ -126,7 +126,6 @@ def update_companies(ticker_file, ticker_column, max_tickers):
     tickers_added = 0
     for ticker in tickers:
         if ticker not in not_found:
-            counter += 1
             with get_connection() as connection:
                 if not database.companies_ticker_exist(connection, ticker):
                     ticker_info = yf.Ticker(ticker).info
@@ -144,17 +143,19 @@ def update_companies(ticker_file, ticker_column, max_tickers):
                         )
                         print(ticker, 'added to Database')
                         tickers_added += 1
+                        counter += 1
                     except KeyError:
                         not_found.append(ticker)
                         not_found_new.append(ticker)
+                        with get_connection() as connection:
+                            database.add_ticker_not_found(connection, not_found_new)
                         print(f"Ticker {ticker} not found!")
                     if counter > max_tickers:
                         break
-    if not_found:
+    if not_found_new:
         print('List of tickers not found:', not_found_new)
-        print('Tickers added: ', tickers_added)
-        with get_connection() as connection:
-            database.add_ticker_not_found(connection, not_found)
+
+    print('Tickers added: ', tickers_added)
 
 
 def add_company(ticker, name, exchange, sector, industry):

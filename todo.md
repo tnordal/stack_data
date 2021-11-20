@@ -52,3 +52,6 @@ Bulk insert filtered bars
     - [x] Add a single companie manuel
         - [ ] add a ticker info
 * Web menu
+### Bugs
+* Error adding ticker not found to db
+    - [x] add all list to one single row
