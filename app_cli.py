@@ -104,17 +104,26 @@ def get_not_found_list(filename):
         return pickle.load(f)
 
 
-def update_companies(ticker_file, ticker_column, max_tickers):
-    try:
-        not_found = get_not_found_list('data_files/tickers_not_found.dump')
-    except FileNotFoundError:
-        not_found = []
+def not_found_from_db():
+    with get_connection() as connection:
+        tickers = database.get_not_found_tickers(connection)
+    return [ticker[0] for ticker in tickers]
 
-    ticker_file = PATH_COMPANIES_FILES + ticker_file
-    df = pd.read_csv(ticker_file)
-    tickers = df[ticker_column].to_list()
+
+def update_companies(ticker_file, ticker_column, max_tickers):
+    not_found = not_found_from_db()
+    not_found_new = []
+    try:
+        ticker_file = PATH_COMPANIES_FILES + ticker_file
+        df = pd.read_csv(ticker_file)
+        tickers = df[ticker_column].to_list()
+
+    except FileNotFoundError:
+        print('File not found:', ticker_file)
+        exit(1)
 
     counter = 0
+    tickers_added = 0
     for ticker in tickers:
         if ticker not in not_found:
             counter += 1
@@ -122,7 +131,6 @@ def update_companies(ticker_file, ticker_column, max_tickers):
                 if not database.companies_ticker_exist(connection, ticker):
                     ticker_info = yf.Ticker(ticker).info
                     try:
-                        # with get_connection() as connection:
                         database.add_company(
                             connection=connection,
                             ticker=ticker_info['symbol'],
@@ -135,14 +143,18 @@ def update_companies(ticker_file, ticker_column, max_tickers):
                             industry=ticker_info['industry']
                         )
                         print(ticker, 'added to Database')
+                        tickers_added += 1
                     except KeyError:
                         not_found.append(ticker)
+                        not_found_new.append(ticker)
                         print(f"Ticker {ticker} not found!")
                     if counter > max_tickers:
                         break
     if not_found:
-        print('List of tickers not found:', not_found)
-        list_to_file(not_found, 'data_files/tickers_not_found.dump')
+        print('List of tickers not found:', not_found_new)
+        print('Tickers added: ', tickers_added)
+        with get_connection() as connection:
+            database.add_ticker_not_found(connection, not_found)
 
 
 def add_company(ticker, name, exchange, sector, industry):
