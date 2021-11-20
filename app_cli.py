@@ -40,17 +40,22 @@ def update_ticker_prompt():
 def update_companies_promt():
     print('Update companies from csv')
     csv_file = input('Enter name csv-file:')
-    col_ticker = input('Enter column name for the ticker:')
-    max_tickers = int(input('Enter max tickers to update:'))
+
+    col_ticker = input('Enter column name for the ticker [Ticker]:')
+    if not col_ticker:
+        col_ticker = 'Ticker'
+
+    max_tickers = input('Enter max tickers to update [9999]:')
+    max_tickers = int(max_tickers) if max_tickers else 9999
 
     print(
         f"update_companies({csv_file}, {col_ticker}, {max_tickers})"
     )
-    update_companies(
-        ticker_file=csv_file,
-        ticker_column=col_ticker,
-        max_tickers=max_tickers
-    )
+    # update_companies(
+    #     ticker_file=csv_file,
+    #     ticker_column=col_ticker,
+    #     max_tickers=max_tickers
+    # )
 
 
 def add_company_promt():
@@ -129,7 +134,7 @@ def update_companies(ticker_file, ticker_column, max_tickers):
                             sector=ticker_info['sector'],
                             industry=ticker_info['industry']
                         )
-                        print(ticker, 'added to Dataframe')
+                        print(ticker, 'added to Database')
                     except KeyError:
                         not_found.append(ticker)
                         print(f"Ticker {ticker} not found!")

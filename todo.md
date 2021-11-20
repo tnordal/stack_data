@@ -45,5 +45,7 @@ Bulk insert filtered bars
     - [x] Make function for update bars
     - [x] Filter witch tickers to update
     - [ ] Make function for insert a new companies file
+        - [x] Set default values for prompts
+        - [x] correct text print for users
     - [x] Add a single companie manuel
 * Web menu
