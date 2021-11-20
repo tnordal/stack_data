@@ -7,6 +7,7 @@ from psycopg2 import errors
 # --- Reset Database ---
 DROP_TABLE_COMPANIES = "DROP TABLE IF EXISTS companies;"
 DROP_TABLE_BARS = "DROP TABLE IF EXISTS bars;"
+DROP_TABLE_NOT_FOUND = "DROP TABLE IF EXISTS not_found;"
 
 # --- Create Tables ---
 CREATE_COMPANIES = """
@@ -66,6 +67,13 @@ CREATE_BARS = """
         UNIQUE (ticker, date)
     );
 """
+CREATE_NOT_FOUND = """
+    CREATE TABLE IF NOT EXISTS not_found (
+        id SERIAL PRIMARY KEY,
+        ticker TEXT,
+        UNIQUE (ticker)
+    );
+"""
 
 # --- SELECT FROM DATABASE ---
 SELECT_LAST_TICKER = """
@@ -88,6 +96,10 @@ SELECT_COMPANIES_WHERE_TICKER = """
     WHERE ticker = %s;
 """
 
+SELECT_TICKERS_NOT_FOUND = """
+    SELECT ticker from not_found;
+"""
+
 # --- INSERT INTO DATABASE ---
 INSERT_COMPANIE_RETURN_TICKER = """
     INSERT INTO companies
@@ -100,6 +112,11 @@ INSERT_COMPANIE_RETURN_ID = """
     (ticker, name, city, country, currency, exchange, sector, industry)
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
     RETURNING id;
+"""
+INSERT_TICKER_INTO_NOT_FOUND = """
+    INSERT INTO not_found
+    (ticker)
+    VALUES (%s);
 """
 
 # SELECT b.*, c.exchange, c.sector
@@ -120,14 +137,16 @@ def get_cursor(connection):
 
 def create_tables(connection):
     with get_cursor(connection) as cursor:
-        cursor.execute(CREATE_COMPANIES_)
+        # cursor.execute(CREATE_COMPANIES_)
         # cursor.execute(CREATE_BARS)
+        cursor.execute(CREATE_NOT_FOUND)
 
 
 def drop_tables(connection):
     with get_cursor(connection) as cursor:
-        cursor.execute(DROP_TABLE_COMPANIES)
+        # cursor.execute(DROP_TABLE_COMPANIES)
         # cursor.execute(DROP_TABLE_BARS)
+        cursor.execute(DROP_TABLE_NOT_FOUND)
 
 
 def get_last_ts(connection, ticker):
@@ -140,6 +159,12 @@ def get_first_ts(connection, ticker):
     with get_cursor(connection) as cursor:
         cursor.execute(SELECT_FIRST_TICKER, (ticker,))
         return cursor.fetchone()[0]
+
+
+def get_not_found_tickers(connection):
+    with get_cursor(connection) as cursor:
+        cursor.execute(SELECT_TICKERS_NOT_FOUND)
+        return cursor.fetchall()
 
 
 def get_tickers(connection, exchange, limit):
@@ -175,6 +200,17 @@ def add_company(
             return None
 
         return cursor.fetchone()[0]
+
+
+def add_ticker_not_found(connection, ticker):
+    with get_cursor(connection) as cursor:
+        try:
+            cursor.execute(
+                INSERT_TICKER_INTO_NOT_FOUND,
+                (ticker,)
+            )
+        except errors.lookup(UNIQUE_VIOLATION):
+            print(f"Ticker: {ticker} exists")
 
 
 def bulk_insert_bars(connection, df, table: str):

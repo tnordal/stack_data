@@ -50,4 +50,5 @@ Bulk insert filtered bars
         - [x] Set default values for prompts
         - [x] correct text print for users
     - [x] Add a single companie manuel
+        - [ ] add a ticker info
 * Web menu
