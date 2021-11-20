@@ -1,7 +1,8 @@
 import download
 from connection_pool import get_connection
 import database
-
+import yfinance as yf
+import pickle
 import pandas as pd
 pd.options.mode.chained_assignment = None
 
@@ -13,7 +14,7 @@ MAIN_MENU_PROMPT = """
 1) Update price data (bars)
 2) Update single ticker price data
 3) Update Companies from csv file
-4) Add a Companie
+4) Add a Company
 q) Exit Main Menu
 
 Enter your choise:"""
@@ -40,29 +41,27 @@ def update_companies_promt():
     print('Update companies from csv')
     csv_file = input('Enter name csv-file:')
     col_ticker = input('Enter column name for the ticker:')
-    col_name = input('Enter column name for the companie name:')
-    col_sector = input('Enter column name for the sector:')
-    exchange = input('Enter exchange name:')
+    max_tickers = int(input('Enter max tickers to update:'))
+
     print(
-        f"update_companies({csv_file}, {col_ticker}, {col_name}, {col_sector})"
+        f"update_companies({csv_file}, {col_ticker}, {max_tickers})"
     )
     update_companies(
         ticker_file=csv_file,
         ticker_column=col_ticker,
-        name_column=col_name,
-        sector_column=col_sector,
-        exchange=exchange
+        max_tickers=max_tickers
     )
 
 
-def add_companie_promt():
+def add_company_promt():
     print('Add companie')
-    ticker = input('Enter ticker:').upper()
-    companie = input('Enter Companie name:')
-    exchange = input('Enter Exchange name:')
-    sector = input('Enter a Sector:')
-    print(f"Add {companie} in sector {sector} with {ticker} as ticker")
-    add_companie(ticker, companie, exchange, sector)
+    print('Not working just now')
+    # ticker = input('Enter ticker:').upper()
+    # companie = input('Enter Companie name:')
+    # exchange = input('Enter Exchange name:')
+    # sector = input('Enter a Sector:')
+    # print(f"Add {companie} in sector {sector} with {ticker} as ticker")
+    # add_companie(ticker, companie, exchange, sector)
 
 # --- Menu Functions ---
 
@@ -89,44 +88,72 @@ def update_bars(exchange, period, max_tickers):
         update_ticker(ticker[0], period)
 
 
-def update_companies(
-    ticker_file,
-    ticker_column,
-    name_column,
-    sector_column,
-    exchange
-):
+# --- Helper Functions ---
+def list_to_file(list, filename):
+    with open(filename, 'wb') as f:
+        pickle.dump(list, f)
+
+
+def get_not_found_list(filename):
+    with open(filename, 'rb') as f:
+        return pickle.load(f)
+
+
+def update_companies(ticker_file, ticker_column, max_tickers):
+    try:
+        not_found = get_not_found_list('data_files/tickers_not_found.dump')
+    except FileNotFoundError:
+        not_found = []
+
     ticker_file = PATH_COMPANIES_FILES + ticker_file
-    df = download.prepare_companies_file_for_db(
-        ticker_file=ticker_file,
-        ticker_column=ticker_column,
-        name_column=name_column,
-        sector_column=sector_column,
-        exchange=exchange
-    )
+    df = pd.read_csv(ticker_file)
+    tickers = df[ticker_column].to_list()
 
-    if len(df) > 0:
-        with get_connection() as connection:
-            ret = database.bulk_insert_bars(connection, df, 'companies')
-            if ret is True:
-                print(f"Inserted {len(df)} rows!")
-            else:
-                print(ret)
-    else:
-        print('Nothing to insert!')
+    counter = 0
+    for ticker in tickers:
+        if ticker not in not_found:
+            counter += 1
+            with get_connection() as connection:
+                if not database.companies_ticker_exist(connection, ticker):
+                    ticker_info = yf.Ticker(ticker).info
+                    try:
+                        # with get_connection() as connection:
+                        database.add_company(
+                            connection=connection,
+                            ticker=ticker_info['symbol'],
+                            name=ticker_info['shortName'],
+                            city=ticker_info['city'],
+                            country=ticker_info['country'],
+                            currency=ticker_info['currency'],
+                            exchange=ticker_info['exchange'],
+                            sector=ticker_info['sector'],
+                            industry=ticker_info['industry']
+                        )
+                        print(ticker, 'added to Dataframe')
+                    except KeyError:
+                        not_found.append(ticker)
+                        print(f"Ticker {ticker} not found!")
+                    if counter > max_tickers:
+                        break
+    if not_found:
+        print('List of tickers not found:', not_found)
+        list_to_file(not_found, 'data_files/tickers_not_found.dump')
+
+    print(counter)
 
 
-def add_companie(ticker, name, exchange, sector):
+def add_company(ticker, name, exchange, sector, industry):
     with get_connection() as connection:
-        new_ticker = database.add_companie(
+        new_id = database.add_company(
             connection=connection,
             ticker=ticker,
             name=name,
             exchange=exchange,
-            sector=sector
+            sector=sector,
+            industry=industry
         )
-    if new_ticker:
-        print(f"Ticker {new_ticker} added")
+    if new_id:
+        print(f"Ticker {ticker} added")
     else:
         print(f"Ticker {ticker} already exists in DB!")
 
@@ -147,7 +174,7 @@ MAIN_MENU_OPTIONS = {
     '1': update_bars_promt,
     '2': update_ticker_prompt,
     '3': update_companies_promt,
-    '4': add_companie_promt
+    '4': add_company_promt
 }
 
 

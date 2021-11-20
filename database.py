@@ -19,10 +19,16 @@ CREATE_COMPANIES = """
 """
 CREATE_COMPANIES_ = """
     CREATE TABLE IF NOT EXISTS companies (
-        ticker TEXT PRIMARY KEY,
+        id SERIAL PRIMARY KEY,
+        ticker TEXT,
         name TEXT,
+        city TEXT,
+        country TEXT,
+        currency TEXT,
         exchange TEXT,
-        sector TEXT
+        sector TEXT,
+        industry TEXT,
+        UNIQUE (ticker)
     );
 """
 CREATE_EXCHANGES = """
@@ -77,12 +83,23 @@ SELECT_COMPANIES_WHERE_EXCHANGE = """
     LIMIT %s;
 """
 
+SELECT_COMPANIES_WHERE_TICKER = """
+    SELECT ticker FROM companies
+    WHERE ticker = %s;
+"""
+
 # --- INSERT INTO DATABASE ---
 INSERT_COMPANIE_RETURN_TICKER = """
     INSERT INTO companies
     (ticker, name, exchange, sector)
     VALUES (%s, %s, %s, %s)
     RETURNING ticker;
+"""
+INSERT_COMPANIE_RETURN_ID = """
+    INSERT INTO companies
+    (ticker, name, city, country, currency, exchange, sector, industry)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+    RETURNING id;
 """
 
 # SELECT b.*, c.exchange, c.sector
@@ -103,14 +120,14 @@ def get_cursor(connection):
 
 def create_tables(connection):
     with get_cursor(connection) as cursor:
-        cursor.execute(CREATE_COMPANIES)
-        cursor.execute(CREATE_BARS)
+        cursor.execute(CREATE_COMPANIES_)
+        # cursor.execute(CREATE_BARS)
 
 
 def drop_tables(connection):
     with get_cursor(connection) as cursor:
         cursor.execute(DROP_TABLE_COMPANIES)
-        cursor.execute(DROP_TABLE_BARS)
+        # cursor.execute(DROP_TABLE_BARS)
 
 
 def get_last_ts(connection, ticker):
@@ -131,12 +148,28 @@ def get_tickers(connection, exchange, limit):
         return cursor.fetchall()
 
 
-def add_companie(connection, ticker, name, exchange, sector):
+def companies_ticker_exist(connection, ticker):
+    with get_cursor(connection) as cursor:
+        cursor.execute(SELECT_COMPANIES_WHERE_TICKER, (ticker,))
+        if cursor.fetchone():
+            return True
+    return False
+
+
+def add_company(
+    connection, ticker, name, city,
+    country, currency, exchange, sector,
+    industry
+):
     with get_cursor(connection) as cursor:
         try:
             cursor.execute(
-                INSERT_COMPANIE_RETURN_TICKER,
-                (ticker, name, exchange, sector)
+                INSERT_COMPANIE_RETURN_ID,
+                (
+                    ticker, name, city, country,
+                    currency, exchange, sector,
+                    industry
+                )
             )
         except errors.lookup(UNIQUE_VIOLATION):
             return None
