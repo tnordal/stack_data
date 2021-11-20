@@ -148,7 +148,7 @@ def update_companies(ticker_file, ticker_column, max_tickers):
                         not_found.append(ticker)
                         not_found_new.append(ticker)
                         with get_connection() as connection:
-                            database.add_ticker_not_found(connection, not_found_new)
+                            database.add_ticker_not_found(connection, ticker)
                         print(f"Ticker {ticker} not found!")
                     if counter > max_tickers:
                         break
