@@ -51,11 +51,11 @@ def update_companies_promt():
     print(
         f"update_companies({csv_file}, {col_ticker}, {max_tickers})"
     )
-    # update_companies(
-    #     ticker_file=csv_file,
-    #     ticker_column=col_ticker,
-    #     max_tickers=max_tickers
-    # )
+    update_companies(
+        ticker_file=csv_file,
+        ticker_column=col_ticker,
+        max_tickers=max_tickers
+    )
 
 
 def add_company_promt():
@@ -143,8 +143,6 @@ def update_companies(ticker_file, ticker_column, max_tickers):
     if not_found:
         print('List of tickers not found:', not_found)
         list_to_file(not_found, 'data_files/tickers_not_found.dump')
-
-    print(counter)
 
 
 def add_company(ticker, name, exchange, sector, industry):
