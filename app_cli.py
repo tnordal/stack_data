@@ -40,7 +40,6 @@ def get_exchange_prompt():
     for i, exchange in enumerate(exchanges):
         item = f"{i}) {exchange[0]} \n"
         menu += item
-        print(menu)
         menu_dict[i] = exchange[0]
     menu += "Enter the number of one of theese exchanges:"
     select = input(menu)
