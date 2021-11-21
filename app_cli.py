@@ -23,12 +23,37 @@ Enter your choise:"""
 
 
 def update_bars_promt():
-    exchange = input('Enter Exchange (Oslo, Sp500, Stockholm):')
-    period = input('Enter period (1y, 2y...):')
-    max_tickers = input('Enter max tickers to update:')
+    # exchange = input('Enter Exchange (Oslo, Sp500, Stockholm):')
+    exchange = get_exchange_prompt()
+    if exchange:
+        period = input('Enter period (1y, 2y...):')
+        max_tickers = input('Enter max tickers to update:')
+        max_tickers = 999 if max_tickers == '' else int(max_tickers)
+        update_bars(exchange, period, max_tickers)
 
-    max_tickers = 999 if max_tickers == '' else int(max_tickers)
-    update_bars(exchange, period, max_tickers)
+
+def get_exchange_prompt():
+    with get_connection() as connection:
+        exchanges = database.get_exchanges(connection)
+    menu = ''
+    menu_dict = {}
+    for i, exchange in enumerate(exchanges):
+        item = f"{i}) {exchange[0]} \n"
+        menu += item
+        print(menu)
+        menu_dict[i] = exchange[0]
+    menu += "Enter the number of one of theese exchanges:"
+    select = input(menu)
+    try:
+        select = int(select)
+        print(f"You select {select} exchange :{menu_dict[select]}")
+        return menu_dict[select]
+    except ValueError:
+        print('Not a number')
+        return None
+    except KeyError:
+        print('Not a valied number')
+        return None
 
 
 def update_ticker_prompt():

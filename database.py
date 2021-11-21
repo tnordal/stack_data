@@ -100,6 +100,11 @@ SELECT_TICKERS_NOT_FOUND = """
     SELECT ticker from not_found;
 """
 
+SELECT_EXCHANGES = """
+    SELECT DISTINCT exchange from companies
+    ORDER BY exchange ASC
+"""
+
 # --- INSERT INTO DATABASE ---
 INSERT_COMPANIE_RETURN_TICKER = """
     INSERT INTO companies
@@ -168,6 +173,12 @@ def get_not_found_tickers(connection):
 def get_tickers(connection, exchange, limit):
     with get_cursor(connection) as cursor:
         cursor.execute(SELECT_COMPANIES_WHERE_EXCHANGE, (exchange, limit))
+        return cursor.fetchall()
+
+
+def get_exchanges(connection):
+    with get_cursor(connection) as cursor:
+        cursor.execute(SELECT_EXCHANGES)
         return cursor.fetchall()
 
 
