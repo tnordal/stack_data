@@ -28,7 +28,7 @@ Bulk insert filtered bars
 * Make a sector table
 * Make a industri table
 * Make a exchange table
-- [ ] Make a table for tickers not found
+- [x] Make a table for tickers not found
 
 ### Download
 * Download ticker
@@ -37,8 +37,8 @@ Bulk insert filtered bars
 * Add companies to db
     - [x] Prepare csv files
     - [x] Bulk insert to db
-    - [ ] Add a single companie
-    - [ ] Add not found tickers to DB
+    - [x] Add a single company
+    - [x] Add not found tickers to DB
 
 ### User inputs
 * Commandline menu
@@ -50,7 +50,7 @@ Bulk insert filtered bars
         - [x] Set default values for prompts
         - [x] correct text print for users
     - [x] Add a single companie manuel
-        - [ ] add a ticker info
+        - [x] add a ticker info
 * Web menu
 ### Bugs
 * Error adding ticker not found to db
