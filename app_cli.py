@@ -59,18 +59,15 @@ def update_companies_promt():
 
 
 def add_company_promt():
-    print('Add companie')
-    print('Not working just now')
-    # ticker = input('Enter ticker:').upper()
-    # companie = input('Enter Companie name:')
-    # exchange = input('Enter Exchange name:')
-    # sector = input('Enter a Sector:')
-    # print(f"Add {companie} in sector {sector} with {ticker} as ticker")
-    # add_companie(ticker, companie, exchange, sector)
+    print('Add company')
+    ticker = input('Enter ticker:').upper()
+    if ticker:
+        add_company(ticker)
+    else:
+        print('Error: Enter a valid ticker!')
+
 
 # --- Menu Functions ---
-
-
 def update_ticker(ticker, period):
     print(f"Update {ticker} for period of {period}")
     df = download.download_history(ticker, period)
@@ -127,7 +124,7 @@ def update_companies(ticker_file, ticker_column, max_tickers):
     for ticker in tickers:
         if ticker not in not_found:
             with get_connection() as connection:
-                if not database.companies_ticker_exist(connection, ticker):
+                if not database.company_ticker_exist(connection, ticker):
                     ticker_info = yf.Ticker(ticker).info
                     try:
                         database.add_company(
@@ -158,20 +155,32 @@ def update_companies(ticker_file, ticker_column, max_tickers):
     print('Tickers added: ', tickers_added)
 
 
-def add_company(ticker, name, exchange, sector, industry):
+def add_company(ticker):
+    # Check if ticker in DB
     with get_connection() as connection:
-        new_id = database.add_company(
-            connection=connection,
-            ticker=ticker,
-            name=name,
-            exchange=exchange,
-            sector=sector,
-            industry=industry
-        )
-    if new_id:
-        print(f"Ticker {ticker} added")
-    else:
-        print(f"Ticker {ticker} already exists in DB!")
+        ticker_exists = database.company_ticker_exist(connection, ticker)
+        if not ticker_exists:
+            # Download ticker if not in DB
+            ticker_info = yf.Ticker(ticker).info
+            if 'symbol' in ticker_info:
+                # Add ticker info to DB
+                database.add_company(
+                    connection=connection,
+                    ticker=ticker_info['symbol'],
+                    name=ticker_info['shortName'],
+                    city=ticker_info['city'],
+                    country=ticker_info['country'],
+                    currency=ticker_info['currency'],
+                    exchange=ticker_info['exchange'],
+                    sector=ticker_info['sector'],
+                    industry=ticker_info['industry']
+                )
+                # Remove ticker from not_found table
+                database.delete_ticker_not_found(connection, ticker)
+            else:
+                print(f"{ticker} Not exist in Yahoo")
+        else:
+            print(f"Ticker {ticker} already in Database")
 
 
 def bulk_insert(df, table):

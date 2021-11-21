@@ -119,13 +119,11 @@ INSERT_TICKER_INTO_NOT_FOUND = """
     VALUES (%s);
 """
 
-# SELECT b.*, c.exchange, c.sector
-# FROM bars b, companies c
-# WHERE c.exchange = 'Oslo'
-# AND c.sector LIKE 'Health Care%'
-# AND b.ticker = c.ticker
-# AND b.date >= '2021-11-01'
-# ORDER BY b.date DESC
+# --- DELETE FROM DATABASE ---
+DELETE_TICKER_NOT_FOUND = """
+    DELETE FROM not_found
+    WHERE ticker = '%s';
+"""
 
 
 @contextmanager
@@ -173,7 +171,7 @@ def get_tickers(connection, exchange, limit):
         return cursor.fetchall()
 
 
-def companies_ticker_exist(connection, ticker):
+def company_ticker_exist(connection, ticker):
     with get_cursor(connection) as cursor:
         cursor.execute(SELECT_COMPANIES_WHERE_TICKER, (ticker,))
         if cursor.fetchone():
@@ -228,6 +226,11 @@ def bulk_insert_bars(connection, df, table: str):
             return True
         except errors.lookup(UNIQUE_VIOLATION):
             return 'Error: Rows already exists!'
+
+
+def delete_ticker_not_found(connection, ticker):
+    with get_cursor(connection) as cursor:
+        cursor.execute(DELETE_TICKER_NOT_FOUND, (ticker,))
 
 
 if __name__ == '__main__':
