@@ -85,6 +85,11 @@ SELECT_FIRST_TICKER = """
     WHERE ticker = %s;
 """
 
+SELECT_COMPANIES = """
+    SELECT ticker FROM companies
+    LIMIT %s;
+"""
+
 SELECT_COMPANIES_WHERE_EXCHANGE = """
     SELECT ticker FROM companies
     WHERE exchange = %s
@@ -173,6 +178,12 @@ def get_not_found_tickers(connection):
 def get_tickers(connection, exchange, limit):
     with get_cursor(connection) as cursor:
         cursor.execute(SELECT_COMPANIES_WHERE_EXCHANGE, (exchange, limit))
+        return cursor.fetchall()
+
+
+def get_all_tickers(connection, limit):
+    with get_cursor(connection) as cursor:
+        cursor.execute(SELECT_COMPANIES, (limit, ))
         return cursor.fetchall()
 
 

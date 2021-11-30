@@ -25,22 +25,23 @@ Enter your choise:"""
 def update_bars_promt():
     # exchange = input('Enter Exchange (Oslo, Sp500, Stockholm):')
     exchange = get_exchange_prompt()
-    if exchange:
-        period = input('Enter period (1y, 2y...):')
-        max_tickers = input('Enter max tickers to update:')
-        max_tickers = 999 if max_tickers == '' else int(max_tickers)
-        update_bars(exchange, period, max_tickers)
+    period = input('Enter period (1y, 2y...):')
+    max_tickers = input('Enter max tickers to update:')
+    max_tickers = 999 if max_tickers == '' else int(max_tickers)
+
+    update_bars(exchange, period, max_tickers)
 
 
 def get_exchange_prompt():
     with get_connection() as connection:
         exchanges = database.get_exchanges(connection)
     menu = ''
-    menu_dict = {}
+    menu += "0) All \n"
+    menu_dict = {0: 'All'}
     for i, exchange in enumerate(exchanges):
-        item = f"{i}) {exchange[0]} \n"
+        item = f"{i+1}) {exchange[0]} \n"
         menu += item
-        menu_dict[i] = exchange[0]
+        menu_dict[i+1] = exchange[0]
     menu += "Enter the number of one of theese exchanges:"
     select = input(menu)
     try:
@@ -106,7 +107,10 @@ def update_bars(exchange, period, max_tickers):
     print(f"Update {exchange} for period of {period}")
     # Get list of tickers
     with get_connection() as connection:
-        tickers = database.get_tickers(connection, exchange, max_tickers)
+        if exchange == 'All':
+            tickers = database.get_all_tickers(connection, max_tickers)
+        else:
+            tickers = database.get_tickers(connection, exchange, max_tickers)
 
     # loop ticker list
     for ticker in tickers:
