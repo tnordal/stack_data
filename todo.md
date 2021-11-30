@@ -46,6 +46,7 @@ Bulk insert filtered bars
     - [x] Update one ticker
     - [x] Make function for update bars
         - [x] Add lists of exchanges for user to choose
+        - [x] Update all tickers for all exchanges
     - [x] Filter witch tickers to update
     - [ ] Make function for insert a new companies file
         - [x] Set default values for prompts
